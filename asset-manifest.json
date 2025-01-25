@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/Divya-rajavat.github.io/Inventory/static/css/main.a1d6c60c.css",
+    "main.js": "/Divya-rajavat.github.io/Inventory/static/js/main.98ddc400.js",
+    "static/js/488.56943aa4.chunk.js": "/Divya-rajavat.github.io/Inventory/static/js/488.56943aa4.chunk.js",
+    "static/media/logo.svg": "/Divya-rajavat.github.io/Inventory/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/Divya-rajavat.github.io/Inventory/index.html",
+    "main.a1d6c60c.css.map": "/Divya-rajavat.github.io/Inventory/static/css/main.a1d6c60c.css.map",
+    "main.98ddc400.js.map": "/Divya-rajavat.github.io/Inventory/static/js/main.98ddc400.js.map",
+    "488.56943aa4.chunk.js.map": "/Divya-rajavat.github.io/Inventory/static/js/488.56943aa4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a1d6c60c.css",
+    "static/js/main.98ddc400.js"
+  ]
+}
