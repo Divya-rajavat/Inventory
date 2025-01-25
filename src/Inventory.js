@@ -3,73 +3,84 @@ import { FaEdit, FaTrashAlt } from 'react-icons/fa';
 import './Inventory.css';
 
 const Inventory = () => {
-  // Initialize with empty array or data from localStorage
   const [items, setItems] = useState(() => {
     const savedItems = localStorage.getItem('inventoryItems');
     return savedItems ? JSON.parse(savedItems) : [];
   });
-  
+
   const [newItem, setNewItem] = useState({ name: '', category: '', quantity: '' });
   const [filterCategory, setFilterCategory] = useState('All');
   const [editMode, setEditMode] = useState(false);
   const [currentEditItem, setCurrentEditItem] = useState(null);
+  const [error, setError] = useState('');
 
-  // Save items to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('inventoryItems', JSON.stringify(items));
   }, [items]);
 
-  // Add or Update item
   const handleAddItem = () => {
+    const { name, category, quantity } = newItem;
+
+    // Check for empty fields
+    if (!name || !category || !quantity) {
+      setError('All fields are required.');
+      return;
+    }
+
+    // Ensure quantity is a valid number
+    if (isNaN(quantity) || quantity <= 0) {
+      setError('Quantity must be a positive number.');
+      return;
+    }
+
+    setError(''); // Clear error if validations pass
+
     if (editMode) {
       const updatedItems = items.map((item) =>
-        item.id === currentEditItem.id ? { ...item, ...newItem } : item
+        item.id === currentEditItem.id ? { ...item, ...newItem, quantity: parseInt(quantity, 10) } : item
       );
       setItems(updatedItems);
       setEditMode(false);
     } else {
-      const newItemWithId = { ...newItem, id: Date.now() };
+      const newItemWithId = { ...newItem, id: Date.now(), quantity: parseInt(quantity, 10) };
       setItems([...items, newItemWithId]);
     }
     setNewItem({ name: '', category: '', quantity: '' });
   };
 
-  // Handle Edit
   const handleEdit = (item) => {
     setCurrentEditItem(item);
     setNewItem({ name: item.name, category: item.category, quantity: item.quantity });
     setEditMode(true);
+    setError('');
   };
 
-  // Handle Delete
   const handleDelete = (id) => {
     const updatedItems = items.filter(item => item.id !== id);
     setItems(updatedItems);
   };
 
-  // Filter by category
   const handleFilterChange = (e) => {
     setFilterCategory(e.target.value);
   };
 
-  // Sort by quantity
   const handleSort = () => {
     const sortedItems = [...items].sort((a, b) => a.quantity - b.quantity);
     setItems(sortedItems);
   };
 
-  // Highlight low-stock items
   const isLowStock = (quantity) => quantity < 10;
 
-  // Filter items by category
   const filteredItems = filterCategory === 'All' ? items : items.filter(item => item.category === filterCategory);
 
-  // Extract unique categories from the current items
   const categories = [...new Set(items.map(item => item.category))];
 
   return (
     <div className="app-container">
       <h1>Inventory Management</h1>
+
+      {/* Error Message */}
+      {error && <p className="error">{error}</p>}
 
       {/* Add/Edit Item Form */}
       <div className="form-container">
@@ -109,7 +120,7 @@ const Inventory = () => {
 
       {/* Inventory Table */}
       {filteredItems.length === 0 ? (
-        <p>No items available in the inventory.</p>  // Message when no items exist
+        <p>No items available in the inventory.</p>
       ) : (
         <table>
           <thead>
