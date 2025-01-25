@@ -1,0 +1,150 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+  }
+  
+  .app-container {
+    width: 100%;
+    max-width: 1000px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+  }
+  
+  /* Header */
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Button and form styles */
+  button {
+    background-color: #2c8e9f; /* Light blue */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #357abd; /* Darker blue */
+  }
+  
+  /* Input field styles */
+  input, select {
+    padding: 10px;
+    font-size: 16px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  input:focus, select:focus {
+    border-color: #4a90e2; /* Light blue */
+    outline: none;
+  }
+  
+  /* Table Styles */
+  table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  table th, table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  table th {
+    background-color: #2c8e9f; /* Light blue */
+    color: white;
+  }
+  
+  table tr:nth-child(even) {
+    background-color: #ddf0f0; /* Light pink */
+  }
+  
+  table tr:nth-child(odd) {
+    background-color: #b8dadb; /* Lighter light pink */
+  }
+
+  table tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  /* Add spacing between the Edit and Delete buttons */
+table td button {
+    margin-right: 10px; /* Space between the buttons */
+  }
+  
+  table td button:last-child {
+    margin-right: 0; /* Remove margin from the last button */
+  }
+  
+  
+ /* Highlight low-stock items in red */
+.low-stock {
+    background-color: #f8d7da; /* Light red */
+    color: red; /* Text color for low stock */
+  }
+    
+  /* Apply colors specifically */
+  table tr.even {
+    background-color: #f9f9f9;
+  }
+  
+  table tr.odd {
+    background-color: #ffffff;
+  }
+  
+  /* Filter Section */
+  .controls {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .controls select {
+    width: 150px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .app-container {
+      width: 100%;
+      padding: 10px;
+    }
+  
+    .controls {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    button {
+      width: 100%;
+    }
+  }
